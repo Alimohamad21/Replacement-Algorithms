@@ -241,7 +241,7 @@ void clockAlgorithm() {
                 clkPage.page = pages[i];
                 clkPage.used = true;
                 frameContents[framePointer] = clkPage;
-                framePointer = (framePointer+1) % maxPageSize;
+                framePointer = (framePointer + 1) % maxPageSize;
                 pageFaults++;
                 lineToPrint += " F";
                 lineToPrint += "   ";
@@ -266,7 +266,7 @@ void optimal() {
     int pageFaults = 0;
     string lineToPrint;
     bool pageInFrame;
-    int lruIndex;
+    int optimalIndex;
     for (int i = 0; i < pages.size(); i++) {
         lineToPrint = pages[i];
         pageInFrame = inFrame(frameContents, pages[i]);
@@ -276,8 +276,8 @@ void optimal() {
             lineToPrint += "     ";
         } else if (frameContents.size() == maxPageSize) {
             if (!pageInFrame) {
-                lruIndex = getOptimalIndex(frameContents, i);
-                frameContents[lruIndex] = pages[i];
+                optimalIndex = getOptimalIndex(frameContents, i);
+                frameContents[optimalIndex] = pages[i];
                 pageFaults++;
                 lineToPrint += " F";
                 lineToPrint += "   ";

@@ -124,11 +124,11 @@ int getFirstOccurrenceAfterIndex(vector<string> pages, string page, int currentI
 
 int getOptimalIndex(vector<string> frameContents, int currentIndex) {
     int maxIndex = getFirstOccurrenceAfterIndex(pages, frameContents[0], currentIndex);
-    int lastOccurrenceIndex, optimalIndex = 0;
+    int firstOccurrenceIndex, optimalIndex = 0;
     for (int i = 1; i < frameContents.size(); i++) {
-        lastOccurrenceIndex = getFirstOccurrenceAfterIndex(pages, frameContents[i], currentIndex);
-        if (lastOccurrenceIndex > maxIndex) {
-            maxIndex = lastOccurrenceIndex;
+        firstOccurrenceIndex = getFirstOccurrenceAfterIndex(pages, frameContents[i], currentIndex);
+        if (firstOccurrenceIndex > maxIndex) {
+            maxIndex = firstOccurrenceIndex;
             optimalIndex = i;
         }
     }

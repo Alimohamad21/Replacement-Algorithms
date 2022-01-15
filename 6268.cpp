@@ -32,7 +32,7 @@ int getFirstOccurrenceAfterIndex(vector<string> pages, string page, int currentI
 
 int getOptimalIndex(vector<string> frameContents, int currentIndex);
 
-void resetUsedBits(vector<clockPage> &frameContents, int currentIndex);
+void resetUsedBits(vector<clockPage> &frameContents);
 
 void setUsedBit(vector<clockPage> &frameContents, string page);
 
@@ -135,7 +135,7 @@ int getOptimalIndex(vector<string> frameContents, int currentIndex) {
     return optimalIndex;
 }
 
-void resetUsedBits(vector<clockPage> &frameContents, int currentIndex) {
+void resetUsedBits(vector<clockPage> &frameContents) {
     while (frameContents[framePointer].used == true) {
         frameContents[framePointer].used = false;
         framePointer = (framePointer + 1) % maxPageSize;
@@ -237,7 +237,7 @@ void clockAlgorithm() {
             lineToPrint += "     ";
         } else if (frameContents.size() == maxPageSize) {
             if (!pageInFrame) {
-                resetUsedBits(frameContents, framePointer);
+                resetUsedBits(frameContents);
                 clkPage.page = pages[i];
                 clkPage.used = true;
                 frameContents[framePointer] = clkPage;
